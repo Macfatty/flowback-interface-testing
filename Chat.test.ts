@@ -182,10 +182,10 @@ test('Group-Chat-Creation', async ({ page }) => {
   // TODO: Fix so a recently registered account is also included
   // const { username } = await register(cPage)
 
-  const username = 'c'
+  const username = 'd'
   await login(cPage, {
-    email: "c@c.se",
-    password: "c"
+    email: "d@d.se",
+    password: "d"
   })
 
   await page.getByRole('button', { name: 'avatar + Invite user' }).nth(1).click()
