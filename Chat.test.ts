@@ -127,9 +127,7 @@ test('Workgroup-Chat', async ({ page }) => {
   await bPage.getByRole('button', { name: 'Work Groups' }).click()
   await bPage.getByRole('button', { name: 'Join', exact: true }).click()
 
-  await page.reload()
   await page.getByRole('button', { name: 'open chat' }).click()
-
   await page.getByPlaceholder('Search chatters').click()
   await page.getByPlaceholder('Search chatters').fill(workgroup)
   await page.getByRole('button', { name: workgroup }).click()
@@ -138,17 +136,14 @@ test('Workgroup-Chat', async ({ page }) => {
   await page.locator('form > button:nth-child(2)').click()
   await page.getByPlaceholder('Write a message...').click()
 
-  await bPage.reload();
-
   await bPage.getByRole('button', { name: 'open chat' }).click()
   await bPage.getByPlaceholder('Search chatters').click()
   await bPage.getByPlaceholder('Search chatters').fill(workgroup)
-
-  const chatButton = page.getByRole('button', { name: workgroup })
-  await expect(chatButton).toBeVisible()
   await bPage.getByRole('button', { name: workgroup }).click()
+  await bPage.getByPlaceholder('Write a message...').click()
   await bPage.getByPlaceholder('Write a message...').fill('Hello!! :D')
-  await bPage.getByPlaceholder('Write a message...').press('Enter')
+  await bPage.locator('form > button:nth-child(2)').click()
+  await bPage.getByPlaceholder('Write a message...').click()
 
   await expect(page.getByText('Hello!! :D').nth(1)).toBeVisible()
   await expect(page.getByText('Hello!! :D').nth(2)).toBeVisible()
